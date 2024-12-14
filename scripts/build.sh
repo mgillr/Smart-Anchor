@@ -88,7 +88,10 @@ handle_compilation_errors() {
                 ;;
             1)
                 echo "Running with sudo..."
-                sudo anchor build 2> logs/compilation.log
+                if ! sudo -v; then
+                    echo "Sudo access required. Please enter your password."
+                    sudo anchor build 2> logs/compilation.log
+                fi
                 ;;
             2)
                 echo "Checking internet connection..."
@@ -99,7 +102,6 @@ handle_compilation_errors() {
                 ;;
             3)
                 echo "Verifying configuration settings..."
-                # Example: Check if a config file exists
                 if [ ! -f config.yml ]; then
                     echo "Configuration file missing. Please provide a valid config.yml."
                     break
@@ -108,24 +110,24 @@ handle_compilation_errors() {
             4)
                 echo "Setting environment variables..."
                 export PATH="$HOME/.cargo/bin:$PATH"
+                export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
                 ;;
             5)
                 echo "Resolving version conflict..."
-                # Example: Use a version manager to switch versions
                 rustup update
                 ;;
             6)
                 echo "Checking library paths..."
-                export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+                if [ -z "$LD_LIBRARY_PATH" ]; then
+                    export LD_LIBRARY_PATH="/usr/local/lib"
+                fi
                 ;;
             7)
                 echo "Fixing syntax error..."
-                # Example: Use a linter to fix syntax errors
                 cargo fmt
                 ;;
             8)
                 echo "Correcting type mismatch..."
-                # Example: Use a type checker
                 cargo check
                 ;;
             *)
