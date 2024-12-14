@@ -88,35 +88,45 @@ handle_compilation_errors() {
                 ;;
             1)
                 echo "Running with sudo..."
-                # Add logic to run with sudo
+                sudo anchor build 2> logs/compilation.log
                 ;;
             2)
                 echo "Checking internet connection..."
-                # Add logic to check internet connection
+                if ! ping -c 1 google.com &> /dev/null; then
+                    echo "No internet connection. Please check your network settings."
+                    break
+                fi
                 ;;
             3)
                 echo "Verifying configuration settings..."
-                # Add logic to verify configuration settings
+                # Example: Check if a config file exists
+                if [ ! -f config.yml ]; then
+                    echo "Configuration file missing. Please provide a valid config.yml."
+                    break
+                fi
                 ;;
             4)
                 echo "Setting environment variables..."
-                # Add logic to set environment variables
+                export PATH="$HOME/.cargo/bin:$PATH"
                 ;;
             5)
                 echo "Resolving version conflict..."
-                # Add logic to resolve version conflict
+                # Example: Use a version manager to switch versions
+                rustup update
                 ;;
             6)
                 echo "Checking library paths..."
-                # Add logic to check library paths
+                export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
                 ;;
             7)
                 echo "Fixing syntax error..."
-                # Add specific commands or logic to fix syntax errors
+                # Example: Use a linter to fix syntax errors
+                cargo fmt
                 ;;
             8)
                 echo "Correcting type mismatch..."
-                # Add logic to correct type mismatch
+                # Example: Use a type checker
+                cargo check
                 ;;
             *)
                 echo "Unknown error encountered. Manual intervention required."
