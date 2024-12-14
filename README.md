@@ -1,4 +1,4 @@
-# **Smart-Anchor** 🚀
+# **Smart-Anchor** 🚀 Note: W.I.P - Not a working product - yet!
 
 **🔧 AI-Driven Installation, Compilation, and Debugging for Solana Contracts**
 
@@ -11,7 +11,7 @@
 - **🔍 Installation Assistance:** Detects and fixes missing dependencies or misconfigurations during setup.
 - **🛠 Compilation Debugging:** Automatically resolves issues in `lib.rs` and related files during `cargo build` or `anchor build`.
 - **♻️ Self-Correcting Build Loop:** Re-compiles until all errors are resolved or flagged for manual review.
-- **💾 Offline-Ready:** Functions without internet using a built-in error database and models.
+- **💾 Offline-Ready-Debugging:** Functions without internet using a built-in error database and models.
 - **📋 Developer-Friendly Logs:** Records unresolved issues with detailed debugging info.
 
 ---
